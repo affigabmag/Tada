@@ -8,7 +8,8 @@ A lightweight Chrome extension that adds a persistent task list popup to any web
 - **Transparent Popup**: Glassmorphic sidebar with blur effect and hover transparency
 - **Draggable**: Click and drag the popup header to reposition
 - **Position Memory**: Remember your preferred popup position
-- **Import/Export**: Download tasks as CSV or import from CSV file
+- **Sortable**: Toggle between newest-first and oldest-first sort order
+- **Import/Export**: Download tasks as CSV (with timestamp) or import from CSV file
 - **Easy to Use**: Add tasks with Enter or click the Add button
 - **Works Everywhere**: Appears on any website
 - **Colored Icons**: Intuitive color-coded buttons in header
@@ -48,15 +49,17 @@ Screenshots show:
 2. Type a task in the text field
 3. Press Enter or click the **+** button to save the task
 4. Click the **✕** button on any task to delete it
-5. Use **⬇** to export tasks as CSV
-6. Use **⬆** to import tasks from CSV file
-7. Click **⚙** to open position selector and move popup to 9 different positions
-8. Drag the header to move popup anywhere on screen
-9. Your tasks persist when you refresh or close the browser
+5. Use **↕** to toggle sort order (newest first / oldest first)
+6. Use **⬇** to export tasks as CSV
+7. Use **⬆** to import tasks from CSV file
+8. Click **⚙** to open position selector and move popup to 9 different positions
+9. Drag the header to move popup anywhere on screen
+10. Your tasks persist when you refresh or close the browser
 
 ## Keyboard Shortcuts
 
 - **Enter** — Add new task (while focused on input)
+- **Click ↕** — Toggle sort order (newest first / oldest first)
 - **Click ⬇** — Export all tasks as CSV
 - **Click ⬆** — Import tasks from CSV file
 - **Click ⚙** — Position selector (3×3 grid)
@@ -78,7 +81,9 @@ Tada/
 
 ## CSV Import/Export Format
 
-**Export**: Creates a file named `tada-tasks-YYYY-MM-DD.csv`
+**Export**: Creates a file named `tada-tasks-YYYY-MM-DD-HH-MM-SS.csv` (includes timestamp)
+
+Example: `tada-tasks-2026-05-03-14-30-45.csv`
 
 ```csv
 Task,Created

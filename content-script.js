@@ -489,8 +489,14 @@ function exportTasksCSV() {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    const now = new Date().toISOString();
-    const dateTime = now.split('.')[0].replace('T', '-').replace(/:/g, '-');
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const date = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const dateTime = `${year}-${month}-${date}-${hours}-${minutes}-${seconds}`;
     link.download = `tada-tasks-${dateTime}.csv`;
     link.click();
   });

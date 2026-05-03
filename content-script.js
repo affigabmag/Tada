@@ -63,6 +63,16 @@ function createPopup() {
   document.addEventListener('mouseup', () => {
     isDragging = false;
     header.style.cursor = 'grab';
+    // Save dragged position to storage
+    const container = document.getElementById('tada-popup-container');
+    if (container && container.style.left && container.style.left !== 'auto') {
+      chrome.storage.local.set({
+        tadaDraggedPosition: {
+          left: container.style.left,
+          top: container.style.top
+        }
+      });
+    }
   });
 
   const headerBtns = document.createElement('div');
@@ -234,7 +244,10 @@ function toggleSettings() {
 function setPosition(position) {
   currentPosition = position;
   applyPosition();
-  chrome.storage.local.set({ todoPosition: position });
+  chrome.storage.local.set({
+    todoPosition: position,
+    tadaDraggedPosition: null
+  });
   // Update grid selection visual
   updatePositionGrid();
   // Close settings panel
@@ -265,12 +278,25 @@ function applyPosition() {
 }
 
 function loadPosition() {
-  chrome.storage.local.get(['todoPosition'], (result) => {
-    if (result.todoPosition) {
-      currentPosition = result.todoPosition;
+  chrome.storage.local.get(['tadaDraggedPosition', 'tadaPosition'], (result) => {
+    const container = document.getElementById('tada-popup-container');
+
+    // Check if there's a saved dragged position
+    if (result.tadaDraggedPosition) {
+      if (container) {
+        container.style.left = result.tadaDraggedPosition.left;
+        container.style.top = result.tadaDraggedPosition.top;
+        container.style.right = 'auto';
+        container.style.bottom = 'auto';
+      }
+    } else {
+      // Otherwise apply the grid position
+      if (result.tadaPosition) {
+        currentPosition = result.tadaPosition;
+      }
+      applyPosition();
+      updatePositionGrid();
     }
-    applyPosition();
-    updatePositionGrid();
   });
 }
 

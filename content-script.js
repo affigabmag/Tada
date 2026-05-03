@@ -114,10 +114,10 @@ function createPopup() {
   closeBtn.textContent = '✕';
   closeBtn.addEventListener('click', () => closePopup());
 
-  headerBtns.appendChild(exportBtn);
   headerBtns.appendChild(importBtn);
-  headerBtns.appendChild(githubBtn);
+  headerBtns.appendChild(exportBtn);
   headerBtns.appendChild(settingsBtn);
+  headerBtns.appendChild(githubBtn);
   headerBtns.appendChild(closeBtn);
   header.appendChild(headerBtns);
 

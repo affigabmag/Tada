@@ -8,6 +8,8 @@ A lightweight Chrome extension that adds a persistent task list popup to any web
 - **Transparent Popup**: Glassmorphic sidebar with blur effect and hover transparency
 - **Draggable**: Click and drag the popup header to reposition
 - **Position Memory**: Remember your preferred popup position
+- **Auto-Sync**: Tasks sync across multiple tabs automatically every 5 minutes
+- **Manual Refresh**: Click refresh button to manually load tasks from other tabs
 - **Sortable**: Toggle between newest-first and oldest-first sort order
 - **Import/Export**: Download tasks as CSV (with timestamp) or import from CSV file
 - **Easy to Use**: Add tasks with Enter or click the Add button
@@ -49,22 +51,27 @@ Screenshots show:
 2. Type a task in the text field
 3. Press Enter or click the **+** button to save the task
 4. Click the **✕** button on any task to delete it
-5. Use **↕** to toggle sort order (newest first / oldest first)
-6. Use **⬇** to export tasks as CSV
-7. Use **⬆** to import tasks from CSV file
-8. Click **⚙** to open position selector and move popup to 9 different positions
-9. Drag the header to move popup anywhere on screen
-10. Your tasks persist when you refresh or close the browser
+5. Use **⟳** to manually refresh tasks from other tabs (auto-refreshes every 5 min)
+6. Use **↕** to toggle sort order (newest first / oldest first)
+7. Use **⬇** to export tasks as CSV
+8. Use **⬆** to import tasks from CSV file
+9. Click **⚙** to open position selector and move popup to 9 different positions
+10. Drag the header to move popup anywhere on screen
+11. Your tasks persist when you refresh or close the browser
+12. Tasks automatically sync across multiple tabs (every 5 minutes)
 
 ## Keyboard Shortcuts
 
 - **Enter** — Add new task (while focused on input)
+- **Click ⟳** — Manually refresh tasks from other tabs
 - **Click ↕** — Toggle sort order (newest first / oldest first)
 - **Click ⬇** — Export all tasks as CSV
 - **Click ⬆** — Import tasks from CSV file
 - **Click ⚙** — Position selector (3×3 grid)
 - **Click ✕** (on task) — Delete task
 - **Click ✕** (header) — Close popup
+
+*Auto-refresh runs every 5 minutes in the background*
 
 ## File Structure
 

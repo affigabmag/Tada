@@ -16,9 +16,24 @@ A lightweight Chrome extension that adds a persistent task list popup to any web
 
 ## Screenshots
 
+See Tada in action across different websites and use cases:
+
 | GitHub Repo | AliExpress Popup | Draggable | Working |
 |---|---|---|---|
 | ![GitHub repo page](images/github-repo.png) | ![Popup on AliExpress](images/aliexpress-popup.png) | ![Dragging popup](images/dragging.png) | ![Tasks visible](images/tasks-working.png) |
+
+**To replace placeholder images:**
+1. Navigate to the `images/` folder on GitHub
+2. Click each `.png` file
+3. Click the pencil icon (Edit)
+4. Click "Delete this file" and upload your screenshot
+5. Or clone locally, replace images, and push back
+
+Screenshots show:
+- **github-repo.png** — Tada repository on GitHub with extension overview
+- **aliexpress-popup.png** — Popup displayed on AliExpress shopping site
+- **dragging.png** — User dragging the popup to a different position
+- **tasks-working.png** — Tasks list with timestamps and delete buttons
 
 ## Installation
 

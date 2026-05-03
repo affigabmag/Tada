@@ -20,19 +20,12 @@ See Tada in action across different websites and use cases:
 
 <table>
   <tr>
-    <td align="center"><b>GitHub Repo</b><br><img src="images/github-repo.png" width="200"></td>
-    <td align="center"><b>AliExpress Popup</b><br><img src="images/aliexpress-popup.png" width="200"></td>
-    <td align="center"><b>Draggable</b><br><img src="images/dragging.png" width="200"></td>
-    <td align="center"><b>Working</b><br><img src="images/tasks-working.png" width="200"></td>
+    <td align="center"><b>GitHub Repo</b><br><img src="https://github.com/user-attachments/assets/ebd6f673-1e18-4da8-bab2-5657378c08ae" width="200"></td>
+    <td align="center"><b>AliExpress Popup</b><br><img src="https://github.com/user-attachments/assets/4c068675-a90a-4b96-ab82-3dbd4cf5ae79" width="200"></td>
+    <td align="center"><b>Draggable</b><br><img src="https://github.com/user-attachments/assets/6ff05513-6f0a-4d38-b292-a92ebd2f4dca" width="200"></td>
+    <td align="center"><b>Working</b><br><img src="https://github.com/user-attachments/assets/092e7139-8b41-4d2e-8c3e-6a711485d7b1" width="200"></td>
   </tr>
 </table>
-
-**To replace placeholder images:**
-1. Navigate to the `images/` folder on GitHub
-2. Click each `.png` file
-3. Click the pencil icon (Edit)
-4. Delete old file and upload your screenshot
-5. Use same filenames: `github-repo.png`, `aliexpress-popup.png`, `dragging.png`, `tasks-working.png`
 
 Screenshots show:
 - **github-repo.png** — Tada repository on GitHub with extension overview

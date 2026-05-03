@@ -489,7 +489,9 @@ function exportTasksCSV() {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `tada-tasks-${new Date().toISOString().split('T')[0]}.csv`;
+    const now = new Date().toISOString();
+    const dateTime = now.split('.')[0].replace('T', '-').replace(/:/g, '-');
+    link.download = `tada-tasks-${dateTime}.csv`;
     link.click();
   });
 }

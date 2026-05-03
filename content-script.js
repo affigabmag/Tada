@@ -125,6 +125,15 @@ function createPopup() {
   closeBtn.textContent = '✕';
   closeBtn.addEventListener('click', () => closePopup());
 
+  const refreshBtn = document.createElement('button');
+  refreshBtn.className = 'tada-refresh-btn';
+  refreshBtn.textContent = '⟳';
+  refreshBtn.title = 'Refresh tasks (auto-refresh every 5 min)';
+  refreshBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    loadTasks();
+  });
+
   const sortBtn = document.createElement('button');
   sortBtn.className = 'tada-sort-btn';
   sortBtn.textContent = '↕';
@@ -138,6 +147,7 @@ function createPopup() {
     loadTasks();
   });
 
+  headerBtns.appendChild(refreshBtn);
   headerBtns.appendChild(sortBtn);
   headerBtns.appendChild(importBtn);
   headerBtns.appendChild(exportBtn);
@@ -232,6 +242,11 @@ function createPopup() {
 
   // Load popup position and apply it
   loadPosition();
+
+  // Auto-refresh tasks every 5 minutes (300000ms)
+  setInterval(() => {
+    loadTasks();
+  }, 300000);
 }
 
 function togglePopup() {

@@ -375,9 +375,9 @@ function addTask(text) {
   );
 }
 
-function deleteTask(index) {
+function deleteTask(taskId) {
   chrome.runtime.sendMessage(
-    { action: 'deleteTask', index },
+    { action: 'deleteTask', taskId },
     (response) => {
       if (response.success) {
         renderTasks(response.tasks);
@@ -461,7 +461,7 @@ function renderTasks(tasks) {
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'tada-delete-btn';
     deleteBtn.textContent = '✕';
-    deleteBtn.addEventListener('click', () => deleteTask(index));
+    deleteBtn.addEventListener('click', () => deleteTask(task.id));
 
     taskEl.appendChild(contentWrapper);
     taskEl.appendChild(deleteBtn);

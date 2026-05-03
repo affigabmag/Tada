@@ -36,12 +36,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   if (request.action === 'deleteTask') {
-    const index = request.index;
+    const taskId = request.taskId;
     chrome.storage.local.get(['todoTasks'], (result) => {
       const tasks = result.todoTasks || [];
-      tasks.splice(index, 1);
-      chrome.storage.local.set({ todoTasks: tasks }, () => {
-        sendResponse({ success: true, tasks });
+      const filtered = tasks.filter((task) => task.id !== taskId);
+      chrome.storage.local.set({ todoTasks: filtered }, () => {
+        sendResponse({ success: true, tasks: filtered });
       });
     });
     return true;

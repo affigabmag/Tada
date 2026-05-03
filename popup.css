@@ -96,6 +96,32 @@
   text-shadow: 0 0 8px rgba(150, 200, 255, 0.5);
 }
 
+/* GitHub button - purple */
+.tada-github-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  color: rgba(180, 100, 255, 0.7);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.tada-github-btn:hover {
+  color: rgba(200, 150, 255, 1);
+  text-shadow: 0 0 8px rgba(200, 150, 255, 0.5);
+}
+
+.tada-github-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* Settings button - orange/yellow */
 .tada-settings-btn {
   background: transparent;

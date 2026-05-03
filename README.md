@@ -18,16 +18,21 @@ A lightweight Chrome extension that adds a persistent task list popup to any web
 
 See Tada in action across different websites and use cases:
 
-| GitHub Repo | AliExpress Popup | Draggable | Working |
-|---|---|---|---|
-| ![GitHub repo page](images/github-repo.png) | ![Popup on AliExpress](images/aliexpress-popup.png) | ![Dragging popup](images/dragging.png) | ![Tasks visible](images/tasks-working.png) |
+<table>
+  <tr>
+    <td align="center"><b>GitHub Repo</b><br><img src="images/github-repo.png" width="200"></td>
+    <td align="center"><b>AliExpress Popup</b><br><img src="images/aliexpress-popup.png" width="200"></td>
+    <td align="center"><b>Draggable</b><br><img src="images/dragging.png" width="200"></td>
+    <td align="center"><b>Working</b><br><img src="images/tasks-working.png" width="200"></td>
+  </tr>
+</table>
 
 **To replace placeholder images:**
 1. Navigate to the `images/` folder on GitHub
 2. Click each `.png` file
 3. Click the pencil icon (Edit)
-4. Click "Delete this file" and upload your screenshot
-5. Or clone locally, replace images, and push back
+4. Delete old file and upload your screenshot
+5. Use same filenames: `github-repo.png`, `aliexpress-popup.png`, `dragging.png`, `tasks-working.png`
 
 Screenshots show:
 - **github-repo.png** — Tada repository on GitHub with extension overview

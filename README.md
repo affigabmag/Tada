@@ -14,6 +14,12 @@ A lightweight Chrome extension that adds a persistent task list popup to any web
 - **Colored Icons**: Intuitive color-coded buttons in header
 - **No Dependencies**: Pure vanilla JavaScript
 
+## Screenshots
+
+| GitHub Repo | AliExpress Popup | Draggable | Working |
+|---|---|---|---|
+| ![GitHub repo page](images/github-repo.png) | ![Popup on AliExpress](images/aliexpress-popup.png) | ![Dragging popup](images/dragging.png) | ![Tasks visible](images/tasks-working.png) |
+
 ## Installation
 
 1. Clone or download this repository

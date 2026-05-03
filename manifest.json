@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Tada",
+  "version": "1.0",
+  "description": "Simple task list popup that persists across browser sessions",
+  "permissions": ["activeTab", "scripting", "tabs", "storage"],
+  "action": {
+    "default_title": "Tada",
+    "default_icon": {
+      "16": "icons/icon-todo-16.png",
+      "48": "icons/icon-todo-48.png",
+      "128": "icons/icon-todo-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

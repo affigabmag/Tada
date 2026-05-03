@@ -20,7 +20,11 @@ See Tada in action across different websites and use cases:
 
 | GitHub Repo | AliExpress Popup | Draggable | Working |
 |---|---|---|---|
-| ![GitHub repo page](images/github-repo.png) | ![Popup on AliExpress](images/aliexpress-popup.png) | ![Dragging popup](images/dragging.png) | ![Tasks visible](images/tasks-working.png) |
+| ![GitHub repo page](<img width="636" height="591" alt="image" src="https://github.com/user-attachments/assets/ebd6f673-1e18-4da8-bab2-5657378c08ae" />
+) | ![Popup on AliExpress](<img width="604" height="446" alt="image" src="https://github.com/user-attachments/assets/4c068675-a90a-4b96-ab82-3dbd4cf5ae79" />
+) | ![Dragging popup](<img width="903" height="637" alt="image" src="https://github.com/user-attachments/assets/6ff05513-6f0a-4d38-b292-a92ebd2f4dca" />
+) | ![Tasks visible](<img width="353" height="271" alt="image" src="https://github.com/user-attachments/assets/092e7139-8b41-4d2e-8c3e-6a711485d7b1" />
+) |
 
 **To replace placeholder images:**
 1. Navigate to the `images/` folder on GitHub

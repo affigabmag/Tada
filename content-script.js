@@ -5,6 +5,7 @@ let popupVisible = false;
 let currentPosition = 'top-right'; // Default position
 let isDragging = false;
 let dragOffset = { x: 0, y: 0 };
+let sortDescending = true; // Default: newest first
 
 const POSITION_MAP = {
   'top-left': { top: '10px', right: 'auto', bottom: 'auto', left: '10px' },
@@ -124,6 +125,20 @@ function createPopup() {
   closeBtn.textContent = '✕';
   closeBtn.addEventListener('click', () => closePopup());
 
+  const sortBtn = document.createElement('button');
+  sortBtn.className = 'tada-sort-btn';
+  sortBtn.textContent = '↕';
+  sortBtn.id = 'tada-sort-btn';
+  sortBtn.title = sortDescending ? 'Sort: Descending (newest first)' : 'Sort: Ascending (oldest first)';
+  sortBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sortDescending = !sortDescending;
+    sortBtn.title = sortDescending ? 'Sort: Descending (newest first)' : 'Sort: Ascending (oldest first)';
+    chrome.storage.local.set({ taskSortDescending: sortDescending });
+    loadTasks();
+  });
+
+  headerBtns.appendChild(sortBtn);
   headerBtns.appendChild(importBtn);
   headerBtns.appendChild(exportBtn);
   headerBtns.appendChild(settingsBtn);
@@ -211,6 +226,9 @@ function createPopup() {
 
   // Load popup state and apply it
   loadPopupState();
+
+  // Load sort preference
+  loadSortPreference();
 
   // Load popup position and apply it
   loadPosition();
@@ -334,6 +352,16 @@ function loadPopupState() {
   });
 }
 
+function loadSortPreference() {
+  chrome.storage.local.get(['taskSortDescending'], (result) => {
+    sortDescending = result.taskSortDescending !== false;
+    const sortBtn = document.getElementById('tada-sort-btn');
+    if (sortBtn) {
+      sortBtn.title = sortDescending ? 'Sort: Descending (newest first)' : 'Sort: Ascending (oldest first)';
+    }
+  });
+}
+
 function addTask(text) {
   if (!text.trim()) return;
 
@@ -405,7 +433,14 @@ function renderTasks(tasks) {
     return;
   }
 
-  tasks.forEach((task, index) => {
+  // Sort tasks by timestamp
+  const sortedTasks = [...tasks].sort((a, b) => {
+    const dateA = new Date(a.created).getTime();
+    const dateB = new Date(b.created).getTime();
+    return sortDescending ? dateB - dateA : dateA - dateB;
+  });
+
+  sortedTasks.forEach((task, index) => {
     const taskEl = document.createElement('div');
     taskEl.className = 'tada-task-item';
 

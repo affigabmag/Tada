@@ -62,6 +62,27 @@
   align-items: center;
 }
 
+/* Sort button - cyan */
+.tada-sort-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: rgba(100, 200, 255, 0.7);
+}
+
+.tada-sort-btn:hover {
+  color: rgba(150, 220, 255, 1);
+  text-shadow: 0 0 8px rgba(150, 220, 255, 0.5);
+}
+
 .tada-icon-btn {
   background: transparent;
   border: none;

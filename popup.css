@@ -142,6 +142,10 @@
   color: rgba(100, 200, 100, 0.7);
 }
 
+.tada-header-btns > .tada-icon-btn:nth-child(4) {
+  margin-top: 2px;
+}
+
 .tada-icon-btn:nth-child(2):hover {
   color: rgba(100, 255, 100, 1);
   text-shadow: 0 0 8px rgba(100, 255, 100, 0.5);

@@ -100,6 +100,7 @@
   transition: all 0.2s;
   color: rgba(100, 200, 255, 0.7);
   line-height: 1;
+  margin-top: -2px;
 }
 
 .tada-sort-btn:hover {
@@ -125,6 +126,10 @@
 /* Import button - blue (first) */
 .tada-icon-btn:nth-child(1) {
   color: rgba(100, 180, 255, 0.7);
+}
+
+.tada-header-btns > .tada-icon-btn:nth-child(3) {
+  margin-top: -2px;
 }
 
 .tada-icon-btn:nth-child(1):hover {

@@ -16,6 +16,15 @@ const TadaLogs = {
 
 TadaLogs.log('Content script loading...');
 
+// Check if chrome context is valid
+function isChromeAvailable() {
+  try {
+    return typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id;
+  } catch (e) {
+    return false;
+  }
+}
+
 let popupVisible = false;
 let currentPosition = 'top-right'; // Default position
 let isDragging = false;
@@ -403,6 +412,11 @@ function addTask(text) {
   if (!text.trim()) return;
 
   try {
+    if (!isChromeAvailable()) {
+      TadaLogs.log('Chrome context invalidated - extension reloaded');
+      return;
+    }
+
     TadaLogs.log('Adding task:', text);
     chrome.runtime.sendMessage(
       { action: 'addTask', text },
@@ -426,6 +440,11 @@ function addTask(text) {
 
 function deleteTask(taskId) {
   try {
+    if (!isChromeAvailable()) {
+      TadaLogs.log('Chrome context invalidated - extension reloaded');
+      return;
+    }
+
     TadaLogs.log('Deleting task:', taskId);
     chrome.runtime.sendMessage(
       { action: 'deleteTask', taskId },
@@ -449,6 +468,11 @@ function deleteTask(taskId) {
 
 function loadTasks() {
   try {
+    if (!isChromeAvailable()) {
+      TadaLogs.log('Chrome context invalidated - extension reloaded');
+      return;
+    }
+
     TadaLogs.log('Loading tasks...');
     chrome.runtime.sendMessage(
       { action: 'getTasks' },

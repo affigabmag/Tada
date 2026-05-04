@@ -1,6 +1,21 @@
 // Content script for Tada extension
 // Injects popup sidebar and handles user interactions
 
+// Tada extension logging - accessible via window.TADA_LOGS in console
+const TadaLogs = {
+  logs: [],
+  maxLogs: 50,
+  log(msg, data = null) {
+    const entry = `[${new Date().toLocaleTimeString()}] ${msg}`;
+    this.logs.push(entry);
+    if (this.logs.length > this.maxLogs) this.logs.shift();
+    console.log('[Tada]', msg, data || '');
+    window.TADA_LOGS = this.logs; // Make accessible in console
+  }
+};
+
+TadaLogs.log('Content script loading...');
+
 let popupVisible = false;
 let currentPosition = 'top-right'; // Default position
 let isDragging = false;
@@ -20,10 +35,15 @@ const POSITION_MAP = {
 };
 
 // Load CSS
-const link = document.createElement('link');
-link.rel = 'stylesheet';
-link.href = chrome.runtime.getURL('popup.css');
-document.head.appendChild(link);
+try {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = chrome.runtime.getURL('popup.css');
+  document.head.appendChild(link);
+  TadaLogs.log('CSS loaded successfully');
+} catch (e) {
+  TadaLogs.log('Error loading CSS:', e.message);
+}
 
 function createPopup() {
   if (document.getElementById('tada-popup-container')) {
@@ -247,6 +267,8 @@ function createPopup() {
   setInterval(() => {
     loadTasks();
   }, 300000);
+
+  TadaLogs.log('Popup created and initialized successfully');
 }
 
 function togglePopup() {
@@ -380,34 +402,72 @@ function loadSortPreference() {
 function addTask(text) {
   if (!text.trim()) return;
 
-  chrome.runtime.sendMessage(
-    { action: 'addTask', text },
-    (response) => {
-      if (response.success) {
-        renderTasks(response.tasks);
+  try {
+    TadaLogs.log('Adding task:', text);
+    chrome.runtime.sendMessage(
+      { action: 'addTask', text },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          TadaLogs.log('Chrome API error:', chrome.runtime.lastError.message);
+          return;
+        }
+        if (response && response.success) {
+          TadaLogs.log('Task added successfully');
+          renderTasks(response.tasks);
+        } else {
+          TadaLogs.log('Add task failed');
+        }
       }
-    }
-  );
+    );
+  } catch (e) {
+    TadaLogs.log('Error adding task:', e.message);
+  }
 }
 
 function deleteTask(taskId) {
-  chrome.runtime.sendMessage(
-    { action: 'deleteTask', taskId },
-    (response) => {
-      if (response.success) {
-        renderTasks(response.tasks);
+  try {
+    TadaLogs.log('Deleting task:', taskId);
+    chrome.runtime.sendMessage(
+      { action: 'deleteTask', taskId },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          TadaLogs.log('Chrome API error:', chrome.runtime.lastError.message);
+          return;
+        }
+        if (response && response.success) {
+          TadaLogs.log('Task deleted successfully');
+          renderTasks(response.tasks);
+        } else {
+          TadaLogs.log('Delete task failed');
+        }
       }
-    }
-  );
+    );
+  } catch (e) {
+    TadaLogs.log('Error deleting task:', e.message);
+  }
 }
 
 function loadTasks() {
-  chrome.runtime.sendMessage(
-    { action: 'getTasks' },
-    (response) => {
-      renderTasks(response.tasks);
-    }
-  );
+  try {
+    TadaLogs.log('Loading tasks...');
+    chrome.runtime.sendMessage(
+      { action: 'getTasks' },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          TadaLogs.log('Chrome API error:', chrome.runtime.lastError.message);
+          return;
+        }
+        if (response && response.tasks) {
+          TadaLogs.log(`Tasks loaded: ${response.tasks.length} tasks`);
+          renderTasks(response.tasks);
+        } else {
+          TadaLogs.log('Invalid response format');
+        }
+      }
+    );
+  } catch (e) {
+    TadaLogs.log('Error loading tasks:', e.message);
+  }
 }
 
 function formatTime(isoString) {
@@ -565,12 +625,21 @@ function importTasksCSV(event) {
 }
 
 // Create popup on page load
-createPopup();
+try {
+  createPopup();
+} catch (e) {
+  TadaLogs.log('Error creating popup:', e.message);
+}
 
 // Listen for toggle messages from background script
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === 'togglePopup') {
-    togglePopup();
-    sendResponse({ success: true });
-  }
-});
+try {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === 'togglePopup') {
+      togglePopup();
+      sendResponse({ success: true });
+    }
+  });
+  TadaLogs.log('Message listener registered');
+} catch (e) {
+  TadaLogs.log('Error registering message listener:', e.message);
+}
